@@ -189,19 +189,19 @@ def commitment():
                                         evidence_card=[2])
 
     # Transition
-    # commitment_transitional_cpd = TabularCPD(variable=commitment_node_1, variable_card=3,
-    #                                          values=[[0.8, 0.15, 0.05],
-    #                                                  [0.15, 0.8, 0.15],
-    #                                                  [0.05, 0.05, 0.8]],
-    #                                          evidence=[commitment_node_0],
-    #                                          evidence_card=[3])
-
     commitment_transitional_cpd = TabularCPD(variable=commitment_node_1, variable_card=3,
-                                             values=[[0.4, 0.35, 0.25],
-                                                     [0.35, 0.4, 0.35],
-                                                     [0.25, 0.25, 0.4]],
+                                             values=[[0.8, 0.15, 0.05],
+                                                     [0.15, 0.8, 0.15],
+                                                     [0.05, 0.05, 0.8]],
                                              evidence=[commitment_node_0],
                                              evidence_card=[3])
+
+    # commitment_transitional_cpd = TabularCPD(variable=commitment_node_1, variable_card=3,
+    #                                          values=[[0.4, 0.35, 0.25],
+    #                                                  [0.35, 0.4, 0.35],
+    #                                                  [0.25, 0.25, 0.4]],
+    #                                          evidence=[commitment_node_0],
+    #                                          evidence_card=[3])
 
     # Associating the CPDs with the network
     model.add_cpds(cpd_commitment, cpd_completes_work, cpd_enthusiastic, cpd_go_above_beyond, cpd_takes_charge,
@@ -625,9 +625,9 @@ def student_A(model):
         student_1_result_mid.iloc[i, 13] = commitment_mid_prob
         student_1_result_low.iloc[i, 13] = commitment_low_prob
 
-        student_1_result_high.to_pickle("studentA_high.p")
-        student_1_result_mid.to_pickle("studentA_mid.p")
-        student_1_result_low.to_pickle("studentA_low.p")
+        student_1_result_high.to_pickle("studentA_strong_impression_high.p")
+        student_1_result_mid.to_pickle("studentA_strong_impression_mid.p")
+        student_1_result_low.to_pickle("studentA_strong_impression_strong_impression_low.p")
 
 #Student A1
 def student_A1(model):
@@ -993,9 +993,9 @@ def student_A1(model):
         student_1_result_mid.iloc[i, 13] = commitment_mid_prob
         student_1_result_low.iloc[i, 13] = commitment_low_prob
 
-        student_1_result_high.to_pickle("studentA1_high.p")
-        student_1_result_mid.to_pickle("studentA1_mid.p")
-        student_1_result_low.to_pickle("studentA1_low.p")
+        student_1_result_high.to_pickle("studentA1_strong_impression_high.p")
+        student_1_result_mid.to_pickle("studentA1_strong_impression_mid.p")
+        student_1_result_low.to_pickle("studentA1_strong_impression_low.p")
 
 #Student A2
 def student_A2(model):
@@ -1367,9 +1367,9 @@ def student_A2(model):
         student_1_result_mid.iloc[i, 13] = commitment_mid_prob
         student_1_result_low.iloc[i, 13] = commitment_low_prob
 
-        student_1_result_high.to_pickle("studentA2_high.p")
-        student_1_result_mid.to_pickle("studentA2_mid.p")
-        student_1_result_low.to_pickle("studentA2_low.p")
+        student_1_result_high.to_pickle("studentA2_strong_impression_high.p")
+        student_1_result_mid.to_pickle("studentA2_strong_impression_mid.p")
+        student_1_result_low.to_pickle("studentA2_strong_impression_low.p")
 
 #Student B
 def student_B(model):
@@ -1765,9 +1765,9 @@ def student_B(model):
         student_1_result_mid.iloc[i, 13] = commitment_mid_prob
         student_1_result_low.iloc[i, 13] = commitment_low_prob
 
-        student_1_result_high.to_pickle("studentB_high.p")
-        student_1_result_mid.to_pickle("studentB_mid.p")
-        student_1_result_low.to_pickle("studentB_low.p")
+        student_1_result_high.to_pickle("studentB_strong_impression_high.p")
+        student_1_result_mid.to_pickle("studentB_strong_impression_mid.p")
+        student_1_result_low.to_pickle("studentB_strong_impression_low.p")
 
 
 def student_B1(model):
@@ -2255,9 +2255,11 @@ def student_B1(model):
         student_1_result_mid.iloc[i, 13] = commitment_mid_prob
         student_1_result_low.iloc[i, 13] = commitment_low_prob
 
-        student_1_result_high.to_pickle("studentB_high.p")
-        student_1_result_mid.to_pickle("studentB_mid.p")
-        student_1_result_low.to_pickle("studentB_low.p")
+        student_1_result_high.to_pickle("studentB1_strong_impression_high.p")
+        student_1_result_mid.to_pickle("studentB1_strong_impression_mid.p")
+        student_1_result_low.to_pickle("studentB1_strong_impression_low.p")
+
+        #TODO: change file name of student B to B1 then re-run student B
 
 # Student C
 def student_C(model):
@@ -2604,9 +2606,9 @@ def student_C(model):
         student_1_result_mid.iloc[i, 13] = commitment_mid_prob
         student_1_result_low.iloc[i, 13] = commitment_low_prob
 
-        student_1_result_high.to_pickle("studentC_high.p")
-        student_1_result_mid.to_pickle("studentC_mid.p")
-        student_1_result_low.to_pickle("studentC_low.p")
+        student_1_result_high.to_pickle("studentC_strong_impression_high.p")
+        student_1_result_mid.to_pickle("studentC_strong_impression_mid.p")
+        student_1_result_low.to_pickle("studentC_strong_impression_low.p")
 
 
 def student_D(model):
@@ -2661,7 +2663,7 @@ def student_D(model):
             initiate_conversations_node_1: 1,
             ("Task done on time", 2): 2,
             ("Work accepted by others", 2): 1,
-            ("Initiate_conversations", 2): 1
+            ("Initiate conversations", 2): 1
         })  # task done on time _all help others shallow
         sim_dict = sim.to_dict('records')[0]
         del sim_dict[("Commitment", 2)]
@@ -2682,10 +2684,10 @@ def student_D(model):
             initiate_conversations_node_1: 1,
             ("Task done on time", 2): 2,
             ("Work accepted by others", 2): 1,
-            ("Initiate_conversations", 2): 1,
+            ("Initiate conversations", 2): 1,
             ("Task done on time", 3): 1,
             ("Work accepted by others", 3): 1,
-            ("Initiate_conversations", 3): 1,
+            ("Initiate conversations", 3): 1,
         })  # task done on time _all help others deep
         sim_dict = sim.to_dict('records')[0]
         del sim_dict[("Commitment", 3)]
@@ -2706,13 +2708,13 @@ def student_D(model):
             initiate_conversations_node_1: 1,
             ("Task done on time", 2): 2,
             ("Work accepted by others", 2): 1,
-            ("Initiate_conversations", 2): 1,
+            ("Initiate conversations", 2): 1,
             ("Task done on time", 3): 1,
             ("Work accepted by others", 3): 1,
-            ("Initiate_conversations", 3): 1,
+            ("Initiate conversations", 3): 1,
             ("Task done on time", 4): 2,
             ("Work accepted by others", 4): 1,
-            ("Initiate_conversations", 4): 1,
+            ("Initiate conversations", 4): 1,
         })  # task done on time _all help others no observation
         sim_dict = sim.to_dict('records')[0]
         del sim_dict[("Commitment", 4)]
@@ -2733,16 +2735,16 @@ def student_D(model):
             initiate_conversations_node_1: 1,
             ("Task done on time", 2): 2,
             ("Work accepted by others", 2): 1,
-            ("Initiate_conversations", 2): 1,
+            ("Initiate conversations", 2): 1,
             ("Task done on time", 3): 1,
             ("Work accepted by others", 3): 1,
-            ("Initiate_conversations", 3): 1,
+            ("Initiate conversations", 3): 1,
             ("Task done on time", 4): 2,
             ("Work accepted by others", 4): 1,
-            ("Initiate_conversations", 4): 1,
+            ("Initiate conversations", 4): 1,
             ("Task done on time", 5): 1,
             ("Work accepted by others", 5): 1,
-            ("Initiate_conversations", 5): 1,
+            ("Initiate conversations", 5): 1,
         })  # task done on time _all help others shallow
         sim_dict = sim.to_dict('records')[0]
         del sim_dict[("Commitment", 5)]
@@ -2763,19 +2765,19 @@ def student_D(model):
             initiate_conversations_node_1: 1,
             ("Task done on time", 2): 2,
             ("Work accepted by others", 2): 1,
-            ("Initiate_conversations", 2): 1,
+            ("Initiate conversations", 2): 1,
             ("Task done on time", 3): 1,
             ("Work accepted by others", 3): 1,
-            ("Initiate_conversations", 3): 1,
+            ("Initiate conversations", 3): 1,
             ("Task done on time", 4): 2,
             ("Work accepted by others", 4): 1,
-            ("Initiate_conversations", 4): 1,
+            ("Initiate conversations", 4): 1,
             ("Task done on time", 5): 1,
             ("Work accepted by others", 5): 1,
-            ("Initiate_conversations", 5): 1,
+            ("Initiate conversations", 5): 1,
             ("Task done on time", 6): 2,
             ("Work accepted by others", 6): 1,
-            ("Initiate_conversations", 6): 1,
+            ("Initiate conversations", 6): 1,
         })
         # task done on time _all help others deep
         sim_dict = sim.to_dict('records')[0]
@@ -2797,22 +2799,22 @@ def student_D(model):
             initiate_conversations_node_1: 1,
             ("Task done on time", 2): 2,
             ("Work accepted by others", 2): 1,
-            ("Initiate_conversations", 2): 1,
+            ("Initiate conversations", 2): 1,
             ("Task done on time", 3): 1,
             ("Work accepted by others", 3): 1,
-            ("Initiate_conversations", 3): 1,
+            ("Initiate conversations", 3): 1,
             ("Task done on time", 4): 2,
             ("Work accepted by others", 4): 1,
-            ("Initiate_conversations", 4): 1,
+            ("Initiate conversations", 4): 1,
             ("Task done on time", 5): 1,
             ("Work accepted by others", 5): 1,
-            ("Initiate_conversations", 5): 1,
+            ("Initiate conversations", 5): 1,
             ("Task done on time", 6): 2,
             ("Work accepted by others", 6): 1,
-            ("Initiate_conversations", 6): 1,
+            ("Initiate conversations", 6): 1,
             ("Task done on time", 7): 1,
             ("Work accepted by others", 7): 1,
-            ("Initiate_conversations", 7): 1,
+            ("Initiate conversations", 7): 1,
         })  # task done on time _all help others no observation
         sim_dict = sim.to_dict('records')[0]
         del sim_dict[("Commitment", 7)]
@@ -2833,25 +2835,25 @@ def student_D(model):
             initiate_conversations_node_1: 1,
             ("Task done on time", 2): 2,
             ("Work accepted by others", 2): 1,
-            ("Initiate_conversations", 2): 1,
+            ("Initiate conversations", 2): 1,
             ("Task done on time", 3): 1,
             ("Work accepted by others", 3): 1,
-            ("Initiate_conversations", 3): 1,
+            ("Initiate conversations", 3): 1,
             ("Task done on time", 4): 2,
             ("Work accepted by others", 4): 1,
-            ("Initiate_conversations", 4): 1,
+            ("Initiate conversations", 4): 1,
             ("Task done on time", 5): 1,
             ("Work accepted by others", 5): 1,
-            ("Initiate_conversations", 5): 1,
+            ("Initiate conversations", 5): 1,
             ("Task done on time", 6): 2,
             ("Work accepted by others", 6): 1,
-            ("Initiate_conversations", 6): 1,
+            ("Initiate conversations", 6): 1,
             ("Task done on time", 7): 1,
             ("Work accepted by others", 7): 1,
-            ("Initiate_conversations", 7): 1,
+            ("Initiate conversations", 7): 1,
             ("Task done on time", 8): 2,
             ("Work accepted by others", 8): 1,
-            ("Initiate_conversations", 8): 1,
+            ("Initiate conversations", 8): 1,
         })  # task done on time _all help others shallow
         sim_dict = sim.to_dict('records')[0]
         del sim_dict[("Commitment", 8)]
@@ -2872,28 +2874,28 @@ def student_D(model):
             initiate_conversations_node_1: 1,
             ("Task done on time", 2): 2,
             ("Work accepted by others", 2): 1,
-            ("Initiate_conversations", 2): 1,
+            ("Initiate conversations", 2): 1,
             ("Task done on time", 3): 1,
             ("Work accepted by others", 3): 1,
-            ("Initiate_conversations", 3): 1,
+            ("Initiate conversations", 3): 1,
             ("Task done on time", 4): 2,
             ("Work accepted by others", 4): 1,
-            ("Initiate_conversations", 4): 1,
+            ("Initiate conversations", 4): 1,
             ("Task done on time", 5): 1,
             ("Work accepted by others", 5): 1,
-            ("Initiate_conversations", 5): 1,
+            ("Initiate conversations", 5): 1,
             ("Task done on time", 6): 2,
             ("Work accepted by others", 6): 1,
-            ("Initiate_conversations", 6): 1,
+            ("Initiate conversations", 6): 1,
             ("Task done on time", 7): 1,
             ("Work accepted by others", 7): 1,
-            ("Initiate_conversations", 7): 1,
+            ("Initiate conversations", 7): 1,
             ("Task done on time", 8): 2,
             ("Work accepted by others", 8): 1,
-            ("Initiate_conversations", 8): 1,
+            ("Initiate conversations", 8): 1,
             ("Task done on time", 9): 1,
             ("Work accepted by others", 9): 1,
-            ("Initiate_conversations", 9): 1,
+            ("Initiate conversations", 9): 1,
         })  # task done on time _all help others deep
         sim_dict = sim.to_dict('records')[0]
         del sim_dict[("Commitment", 9)]
@@ -2914,31 +2916,31 @@ def student_D(model):
             initiate_conversations_node_1: 1,
             ("Task done on time", 2): 2,
             ("Work accepted by others", 2): 1,
-            ("Initiate_conversations", 2): 1,
+            ("Initiate conversations", 2): 1,
             ("Task done on time", 3): 1,
             ("Work accepted by others", 3): 1,
-            ("Initiate_conversations", 3): 1,
+            ("Initiate conversations", 3): 1,
             ("Task done on time", 4): 2,
             ("Work accepted by others", 4): 1,
-            ("Initiate_conversations", 4): 1,
+            ("Initiate conversations", 4): 1,
             ("Task done on time", 5): 1,
             ("Work accepted by others", 5): 1,
-            ("Initiate_conversations", 5): 1,
+            ("Initiate conversations", 5): 1,
             ("Task done on time", 6): 2,
             ("Work accepted by others", 6): 1,
-            ("Initiate_conversations", 6): 1,
+            ("Initiate conversations", 6): 1,
             ("Task done on time", 7): 1,
             ("Work accepted by others", 7): 1,
-            ("Initiate_conversations", 7): 1,
+            ("Initiate conversations", 7): 1,
             ("Task done on time", 8): 2,
             ("Work accepted by others", 8): 1,
-            ("Initiate_conversations", 8): 1,
+            ("Initiate conversations", 8): 1,
             ("Task done on time", 9): 1,
             ("Work accepted by others", 9): 1,
-            ("Initiate_conversations", 9): 1,
+            ("Initiate conversations", 9): 1,
             ("Task done on time", 10): 2,
             ("Work accepted by others", 10): 1,
-            ("Initiate_conversations", 10): 1,
+            ("Initiate conversations", 10): 1,
         }) # task done on time _all help others no observation
         sim_dict = sim.to_dict('records')[0]
         del sim_dict[("Commitment", 10)]
@@ -2959,34 +2961,34 @@ def student_D(model):
             initiate_conversations_node_1: 1,
             ("Task done on time", 2): 2,
             ("Work accepted by others", 2): 1,
-            ("Initiate_conversations", 2): 1,
+            ("Initiate conversations", 2): 1,
             ("Task done on time", 3): 1,
             ("Work accepted by others", 3): 1,
-            ("Initiate_conversations", 3): 1,
+            ("Initiate conversations", 3): 1,
             ("Task done on time", 4): 2,
             ("Work accepted by others", 4): 1,
-            ("Initiate_conversations", 4): 1,
+            ("Initiate conversations", 4): 1,
             ("Task done on time", 5): 1,
             ("Work accepted by others", 5): 1,
-            ("Initiate_conversations", 5): 1,
+            ("Initiate conversations", 5): 1,
             ("Task done on time", 6): 2,
             ("Work accepted by others", 6): 1,
-            ("Initiate_conversations", 6): 1,
+            ("Initiate conversations", 6): 1,
             ("Task done on time", 7): 1,
             ("Work accepted by others", 7): 1,
-            ("Initiate_conversations", 7): 1,
+            ("Initiate conversations", 7): 1,
             ("Task done on time", 8): 2,
             ("Work accepted by others", 8): 1,
-            ("Initiate_conversations", 8): 1,
+            ("Initiate conversations", 8): 1,
             ("Task done on time", 9): 1,
             ("Work accepted by others", 9): 1,
-            ("Initiate_conversations", 9): 1,
+            ("Initiate conversations", 9): 1,
             ("Task done on time", 10): 2,
             ("Work accepted by others", 10): 1,
-            ("Initiate_conversations", 10): 1,
+            ("Initiate conversations", 10): 1,
             ("Task done on time", 11): 1,
             ("Work accepted by others", 11): 1,
-            ("Initiate_conversations", 11): 1,
+            ("Initiate conversations", 11): 1,
         })  # task done on time _all help others shallow
         sim_dict = sim.to_dict('records')[0]
         del sim_dict[("Commitment", 11)]
@@ -3007,37 +3009,458 @@ def student_D(model):
             initiate_conversations_node_1: 1,
             ("Task done on time", 2): 2,
             ("Work accepted by others", 2): 1,
-            ("Initiate_conversations", 2): 1,
+            ("Initiate conversations", 2): 1,
             ("Task done on time", 3): 1,
             ("Work accepted by others", 3): 1,
-            ("Initiate_conversations", 3): 1,
+            ("Initiate conversations", 3): 1,
             ("Task done on time", 4): 2,
             ("Work accepted by others", 4): 1,
-            ("Initiate_conversations", 4): 1,
+            ("Initiate conversations", 4): 1,
             ("Task done on time", 5): 1,
             ("Work accepted by others", 5): 1,
-            ("Initiate_conversations", 5): 1,
+            ("Initiate conversations", 5): 1,
             ("Task done on time", 6): 2,
             ("Work accepted by others", 6): 1,
-            ("Initiate_conversations", 6): 1,
+            ("Initiate conversations", 6): 1,
             ("Task done on time", 7): 1,
             ("Work accepted by others", 7): 1,
-            ("Initiate_conversations", 7): 1,
+            ("Initiate conversations", 7): 1,
             ("Task done on time", 8): 2,
             ("Work accepted by others", 8): 1,
-            ("Initiate_conversations", 8): 1,
+            ("Initiate conversations", 8): 1,
             ("Task done on time", 9): 1,
             ("Work accepted by others", 9): 1,
-            ("Initiate_conversations", 9): 1,
+            ("Initiate conversations", 9): 1,
             ("Task done on time", 10): 2,
             ("Work accepted by others", 10): 1,
-            ("Initiate_conversations", 10): 1,
+            ("Initiate conversations", 10): 1,
             ("Task done on time", 11): 1,
             ("Work accepted by others", 11): 1,
-            ("Initiate_conversations", 11): 1,
+            ("Initiate conversations", 11): 1,
             ("Task done on time", 12): 2,
             ("Work accepted by others", 12): 1,
-            ("Initiate_conversations", 12): 1,
+            ("Initiate conversations", 12): 1,
+        })  # task done on time _all help others deep
+        sim_dict = sim.to_dict('records')[0]
+        del sim_dict[("Commitment", 12)]
+        inference_value = dbn_inf.forward_inference([("Commitment", 12)], sim_dict)
+        result = inference_value[("Commitment", 12)].values
+        commitment_low_prob = result[0]
+        commitment_mid_prob = result[1]
+        commitment_high_prob = result[2]
+        student_1_result_high.iloc[i, 12] = commitment_high_prob
+        student_1_result_mid.iloc[i, 12] = commitment_mid_prob
+        student_1_result_low.iloc[i, 12] = commitment_low_prob
+
+        sim = model.simulate(n_samples=1, n_time_slices=14, evidence={
+            # commitment_node_0: 1,
+            task_done_on_time_node_1: 1,
+            work_accepted_by_others_node_1: 1,
+            initiate_conversations_node_1: 1,
+            ("Task done on time", 2): 2,
+            ("Work accepted by others", 2): 1,
+            ("Initiate conversations", 2): 1,
+            ("Task done on time", 3): 1,
+            ("Work accepted by others", 3): 1,
+            ("Initiate conversations", 3): 1,
+            ("Task done on time", 4): 2,
+            ("Work accepted by others", 4): 1,
+            ("Initiate conversations", 4): 1,
+            ("Task done on time", 5): 1,
+            ("Work accepted by others", 5): 1,
+            ("Initiate conversations", 5): 1,
+            ("Task done on time", 6): 2,
+            ("Work accepted by others", 6): 1,
+            ("Initiate conversations", 6): 1,
+            ("Task done on time", 7): 1,
+            ("Work accepted by others", 7): 1,
+            ("Initiate conversations", 7): 1,
+            ("Task done on time", 8): 2,
+            ("Work accepted by others", 8): 1,
+            ("Initiate conversations", 8): 1,
+            ("Task done on time", 9): 1,
+            ("Work accepted by others", 9): 1,
+            ("Initiate conversations", 9): 1,
+            ("Task done on time", 10): 2,
+            ("Work accepted by others", 10): 1,
+            ("Initiate conversations", 10): 1,
+            ("Task done on time", 11): 1,
+            ("Work accepted by others", 11): 1,
+            ("Initiate conversations", 11): 1,
+            ("Task done on time", 12): 2,
+            ("Work accepted by others", 12): 1,
+            ("Initiate conversations", 12): 1,
+            ("Task done on time", 13): 2,
+            ("Work accepted by others", 13): 1,
+            ("Initiate conversations", 13): 1,
+        })  # task done on time _all help others no observation
+        print("week 13")
+        sim_dict = sim.to_dict('records')[0]
+        del sim_dict[("Commitment", 13)]
+        inference_value = dbn_inf.forward_inference([("Commitment", 13)], sim_dict)
+        result = inference_value[("Commitment", 13)].values
+        commitment_low_prob = result[0]
+        commitment_mid_prob = result[1]
+        commitment_high_prob = result[2]
+        student_1_result_high.iloc[i, 13] = commitment_high_prob
+        student_1_result_mid.iloc[i, 13] = commitment_mid_prob
+        student_1_result_low.iloc[i, 13] = commitment_low_prob
+
+        student_1_result_high.to_pickle("studentD_strong_impression_high.p")
+        student_1_result_mid.to_pickle("studentD_strong_impression_mid.p")
+        student_1_result_low.to_pickle("studentD_strong_impression_low.p")
+
+
+def student_F(model):
+    '''
+    Never gets work done, always negative attitude
+    '''
+    dbn_inf = DBNInference(model)
+
+    student_1_result_high = pd.DataFrame(columns=range(0, 14), index=range(0, MAX_ITERATIONS))
+    student_1_result_mid = pd.DataFrame(columns=range(0, 14), index=range(0, MAX_ITERATIONS))
+    student_1_result_low = pd.DataFrame(columns=range(0, 14), index=range(0, MAX_ITERATIONS))
+
+    for i in range(0, MAX_ITERATIONS):
+        print("week 0")
+        # r = np.random.rand(1)
+        # cpd = model.get_cpds(commitment_node_0).values
+        # if r < cpd[0]:
+        #     sim = model.simulate(1, evidence={commitment_node_0: 0})
+        # elif r < cpd[1]:
+        #     sim = model.simulate(1, evidence={commitment_node_0: 1})
+        # else:
+        #     sim = model.simulate(1, evidence={commitment_node_0: 2})
+        student_1_result_high.iloc[i, 0] = 0
+        student_1_result_mid.iloc[i, 0] = 1
+        student_1_result_low.iloc[i, 0] = 0
+
+        print("week 1")
+        # it uses rejection sampling from joint distribution of the bayesian network provided
+        sim = model.simulate(n_samples=1, n_time_slices=2, evidence={
+            # commitment_node_0: 1,
+            task_done_on_time_node_1: 2,
+            positive_tone_node_1: 2,
+        })  # task done on time _all help others no observation
+        sim_dict = sim.to_dict('records')[0]
+        del sim_dict[("Commitment", 1)]
+        inference_value = dbn_inf.forward_inference([("Commitment", 1)], sim_dict)
+        result = inference_value[("Commitment", 1)].values
+        commitment_low_prob = result[0]
+        commitment_mid_prob = result[1]
+        commitment_high_prob = result[2]
+        student_1_result_high.iloc[i, 1] = commitment_high_prob
+        student_1_result_mid.iloc[i, 1] = commitment_mid_prob
+        student_1_result_low.iloc[i, 1] = commitment_low_prob
+
+        print("week 2")
+        sim = model.simulate(n_samples=1, n_time_slices=3, evidence={
+            # commitment_node_0: 1,
+            task_done_on_time_node_1: 2,
+            positive_tone_node_1: 2,
+            ("Task done on time", 2): 2,
+            ("Positive tone", 2): 2,
+        })  # task done on time _all help others shallow
+        sim_dict = sim.to_dict('records')[0]
+        del sim_dict[("Commitment", 2)]
+        inference_value = dbn_inf.forward_inference([("Commitment", 2)], sim_dict)
+        result = inference_value[("Commitment", 2)].values
+        commitment_low_prob = result[0]
+        commitment_mid_prob = result[1]
+        commitment_high_prob = result[2]
+        student_1_result_high.iloc[i, 2] = commitment_high_prob
+        student_1_result_mid.iloc[i, 2] = commitment_mid_prob
+        student_1_result_low.iloc[i, 2] = commitment_low_prob
+
+        print("week 3")
+        sim = model.simulate(n_samples=1, n_time_slices=4, evidence={
+            # commitment_node_0: 1,
+            task_done_on_time_node_1: 2,
+            positive_tone_node_1: 2,
+            ("Task done on time", 2): 2,
+            ("Positive tone", 2): 2,
+            ("Task done on time", 3): 2,
+            ("Positive tone", 3): 2,
+        })  # task done on time _all help others deep
+        sim_dict = sim.to_dict('records')[0]
+        del sim_dict[("Commitment", 3)]
+        inference_value = dbn_inf.forward_inference([("Commitment", 3)], sim_dict)
+        result = inference_value[("Commitment", 3)].values
+        commitment_low_prob = result[0]
+        commitment_mid_prob = result[1]
+        commitment_high_prob = result[2]
+        student_1_result_high.iloc[i, 3] = commitment_high_prob
+        student_1_result_mid.iloc[i, 3] = commitment_mid_prob
+        student_1_result_low.iloc[i, 3] = commitment_low_prob
+
+        print("week 4")
+        sim = model.simulate(n_samples=1, n_time_slices=5, evidence={
+            # commitment_node_0: 1,
+            task_done_on_time_node_1: 2,
+            positive_tone_node_1: 2,
+            ("Task done on time", 2): 2,
+            ("Positive tone", 2): 2,
+            ("Task done on time", 3): 2,
+            ("Positive tone", 3): 2,
+            ("Task done on time", 4): 2,
+            ("Positive tone", 4): 2,
+        })  # task done on time _all help others no observation
+        sim_dict = sim.to_dict('records')[0]
+        del sim_dict[("Commitment", 4)]
+        inference_value = dbn_inf.forward_inference([("Commitment", 4)], sim_dict)
+        result = inference_value[("Commitment", 4)].values
+        commitment_low_prob = result[0]
+        commitment_mid_prob = result[1]
+        commitment_high_prob = result[2]
+        student_1_result_high.iloc[i, 4] = commitment_high_prob
+        student_1_result_mid.iloc[i, 4] = commitment_mid_prob
+        student_1_result_low.iloc[i, 4] = commitment_low_prob
+
+        print("week 5")
+        sim = model.simulate(n_samples=1, n_time_slices=6, evidence={
+            # commitment_node_0: 1,
+            task_done_on_time_node_1: 2,
+            positive_tone_node_1: 2,
+            ("Task done on time", 2): 2,
+            ("Positive tone", 2): 2,
+            ("Task done on time", 3): 2,
+            ("Positive tone", 3): 2,
+            ("Task done on time", 4): 2,
+            ("Positive tone", 4): 2,
+            ("Task done on time", 5): 2,
+            ("Positive tone", 5): 2,
+        })  # task done on time _all help others shallow
+        sim_dict = sim.to_dict('records')[0]
+        del sim_dict[("Commitment", 5)]
+        inference_value = dbn_inf.forward_inference([("Commitment", 5)], sim_dict)
+        result = inference_value[("Commitment", 5)].values
+        commitment_low_prob = result[0]
+        commitment_mid_prob = result[1]
+        commitment_high_prob = result[2]
+        student_1_result_high.iloc[i, 5] = commitment_high_prob
+        student_1_result_mid.iloc[i, 5] = commitment_mid_prob
+        student_1_result_low.iloc[i, 5] = commitment_low_prob
+
+        print("week 6")
+        sim = model.simulate(n_samples=1, n_time_slices=7, evidence={
+            # commitment_node_0: 1,
+            task_done_on_time_node_1: 2,
+            positive_tone_node_1: 2,
+            ("Task done on time", 2): 2,
+            ("Positive tone", 2): 2,
+            ("Task done on time", 3): 2,
+            ("Positive tone", 3): 2,
+            ("Task done on time", 4): 2,
+            ("Positive tone", 4): 2,
+            ("Task done on time", 5): 2,
+            ("Positive tone", 5): 2,
+            ("Task done on time", 6): 2,
+            ("Positive tone", 6): 2,
+        })
+        # task done on time _all help others deep
+        sim_dict = sim.to_dict('records')[0]
+        del sim_dict[("Commitment", 6)]
+        inference_value = dbn_inf.forward_inference([("Commitment", 6)], sim_dict)
+        result = inference_value[("Commitment", 6)].values
+        commitment_low_prob = result[0]
+        commitment_mid_prob = result[1]
+        commitment_high_prob = result[2]
+        student_1_result_high.iloc[i, 6] = commitment_high_prob
+        student_1_result_mid.iloc[i, 6] = commitment_mid_prob
+        student_1_result_low.iloc[i, 6] = commitment_low_prob
+
+        print("week 7")
+        sim = model.simulate(n_samples=1, n_time_slices=8, evidence={
+            # commitment_node_0: 1,
+            task_done_on_time_node_1: 2,
+            positive_tone_node_1: 2,
+            ("Task done on time", 2): 2,
+            ("Positive tone", 2): 2,
+            ("Task done on time", 3): 2,
+            ("Positive tone", 3): 2,
+            ("Task done on time", 4): 2,
+            ("Positive tone", 4): 2,
+            ("Task done on time", 5): 2,
+            ("Positive tone", 5): 2,
+            ("Task done on time", 6): 2,
+            ("Positive tone", 6): 2,
+            ("Task done on time", 7): 2,
+            ("Positive tone", 7): 2,
+        })  # task done on time _all help others no observation
+        sim_dict = sim.to_dict('records')[0]
+        del sim_dict[("Commitment", 7)]
+        inference_value = dbn_inf.forward_inference([("Commitment", 7)], sim_dict)
+        result = inference_value[("Commitment", 7)].values
+        commitment_low_prob = result[0]
+        commitment_mid_prob = result[1]
+        commitment_high_prob = result[2]
+        student_1_result_high.iloc[i, 7] = commitment_high_prob
+        student_1_result_mid.iloc[i, 7] = commitment_mid_prob
+        student_1_result_low.iloc[i, 7] = commitment_low_prob
+
+        print("week 8")
+        sim = model.simulate(n_samples=1, n_time_slices=9, evidence={
+            # commitment_node_0: 1,
+            task_done_on_time_node_1: 2,
+            positive_tone_node_1: 2,
+            ("Task done on time", 2): 2,
+            ("Positive tone", 2): 2,
+            ("Task done on time", 3): 2,
+            ("Positive tone", 3): 2,
+            ("Task done on time", 4): 2,
+            ("Positive tone", 4): 2,
+            ("Task done on time", 5): 2,
+            ("Positive tone", 5): 2,
+            ("Task done on time", 6): 2,
+            ("Positive tone", 6): 2,
+            ("Task done on time", 7): 2,
+            ("Positive tone", 7): 2,
+            ("Task done on time", 8): 2,
+            ("Positive tone", 8): 2,
+        })  # task done on time _all help others shallow
+        sim_dict = sim.to_dict('records')[0]
+        del sim_dict[("Commitment", 8)]
+        inference_value = dbn_inf.forward_inference([("Commitment", 8)], sim_dict)
+        result = inference_value[("Commitment", 8)].values
+        commitment_low_prob = result[0]
+        commitment_mid_prob = result[1]
+        commitment_high_prob = result[2]
+        student_1_result_high.iloc[i, 8] = commitment_high_prob
+        student_1_result_mid.iloc[i, 8] = commitment_mid_prob
+        student_1_result_low.iloc[i, 8] = commitment_low_prob
+
+        print("week 9")
+        sim = model.simulate(n_samples=1, n_time_slices=10, evidence={
+            # commitment_node_0: 1,
+            task_done_on_time_node_1: 2,
+            positive_tone_node_1: 2,
+            ("Task done on time", 2): 2,
+            ("Positive tone", 2): 2,
+            ("Task done on time", 3): 2,
+            ("Positive tone", 3): 2,
+            ("Task done on time", 4): 2,
+            ("Positive tone", 4): 2,
+            ("Task done on time", 5): 2,
+            ("Positive tone", 5): 2,
+            ("Task done on time", 6): 2,
+            ("Positive tone", 6): 2,
+            ("Task done on time", 7): 2,
+            ("Positive tone", 7): 2,
+            ("Task done on time", 8): 2,
+            ("Positive tone", 8): 2,
+            ("Task done on time", 9): 2,
+            ("Positive tone", 9): 2,
+        })  # task done on time _all help others deep
+        sim_dict = sim.to_dict('records')[0]
+        del sim_dict[("Commitment", 9)]
+        inference_value = dbn_inf.forward_inference([("Commitment", 9)], sim_dict)
+        result = inference_value[("Commitment", 9)].values
+        commitment_low_prob = result[0]
+        commitment_mid_prob = result[1]
+        commitment_high_prob = result[2]
+        student_1_result_high.iloc[i, 9] = commitment_high_prob
+        student_1_result_mid.iloc[i, 9] = commitment_mid_prob
+        student_1_result_low.iloc[i, 9] = commitment_low_prob
+
+        print("week 10")
+        sim = model.simulate(n_samples=1, n_time_slices=11, evidence={
+            # commitment_node_0: 1,
+            task_done_on_time_node_1: 2,
+            positive_tone_node_1: 2,
+            ("Task done on time", 2): 2,
+            ("Positive tone", 2): 2,
+            ("Task done on time", 3): 2,
+            ("Positive tone", 3): 2,
+            ("Task done on time", 4): 2,
+            ("Positive tone", 4): 2,
+            ("Task done on time", 5): 2,
+            ("Positive tone", 5): 2,
+            ("Task done on time", 6): 2,
+            ("Positive tone", 6): 2,
+            ("Task done on time", 7): 2,
+            ("Positive tone", 7): 2,
+            ("Task done on time", 8): 2,
+            ("Positive tone", 8): 2,
+            ("Task done on time", 9): 2,
+            ("Positive tone", 9): 2,
+            ("Task done on time", 10): 2,
+            ("Positive tone", 10): 2,
+        }) # task done on time _all help others no observation
+        sim_dict = sim.to_dict('records')[0]
+        del sim_dict[("Commitment", 10)]
+        inference_value = dbn_inf.forward_inference([("Commitment", 10)], sim_dict)
+        result = inference_value[("Commitment", 10)].values
+        commitment_low_prob = result[0]
+        commitment_mid_prob = result[1]
+        commitment_high_prob = result[2]
+        student_1_result_high.iloc[i, 10] = commitment_high_prob
+        student_1_result_mid.iloc[i, 10] = commitment_mid_prob
+        student_1_result_low.iloc[i, 10] = commitment_low_prob
+
+        print("week 11")
+        sim = model.simulate(n_samples=1, n_time_slices=12, evidence={
+            # commitment_node_0: 1,
+            task_done_on_time_node_1: 2,
+            positive_tone_node_1: 2,
+            ("Task done on time", 2): 2,
+            ("Positive tone", 2): 2,
+            ("Task done on time", 3): 2,
+            ("Positive tone", 3): 2,
+            ("Task done on time", 4): 2,
+            ("Positive tone", 4): 2,
+            ("Task done on time", 5): 2,
+            ("Positive tone", 5): 2,
+            ("Task done on time", 6): 2,
+            ("Positive tone", 6): 2,
+            ("Task done on time", 7): 2,
+            ("Positive tone", 7): 2,
+            ("Task done on time", 8): 2,
+            ("Positive tone", 8): 2,
+            ("Task done on time", 9): 2,
+            ("Positive tone", 9): 2,
+            ("Task done on time", 10): 2,
+            ("Positive tone", 10): 2,
+            ("Task done on time", 11): 2,
+            ("Positive tone", 11): 2,
+        })  # task done on time _all help others shallow
+        sim_dict = sim.to_dict('records')[0]
+        del sim_dict[("Commitment", 11)]
+        inference_value = dbn_inf.forward_inference([("Commitment", 11)], sim_dict)
+        result = inference_value[("Commitment", 11)].values
+        commitment_low_prob = result[0]
+        commitment_mid_prob = result[1]
+        commitment_high_prob = result[2]
+        student_1_result_high.iloc[i, 11] = commitment_high_prob
+        student_1_result_mid.iloc[i, 11] = commitment_mid_prob
+        student_1_result_low.iloc[i, 11] = commitment_low_prob
+
+        print("week 12")
+        sim = model.simulate(n_samples=1, n_time_slices=13, evidence={
+            # commitment_node_0: 1,
+            task_done_on_time_node_1: 2,
+            positive_tone_node_1: 2,
+            ("Task done on time", 2): 2,
+            ("Positive tone", 2): 2,
+            ("Task done on time", 3): 2,
+            ("Positive tone", 3): 2,
+            ("Task done on time", 4): 2,
+            ("Positive tone", 4): 2,
+            ("Task done on time", 5): 2,
+            ("Positive tone", 5): 2,
+            ("Task done on time", 6): 2,
+            ("Positive tone", 6): 2,
+            ("Task done on time", 7): 2,
+            ("Positive tone", 7): 2,
+            ("Task done on time", 8): 2,
+            ("Positive tone", 8): 2,
+            ("Task done on time", 9): 2,
+            ("Positive tone", 9): 2,
+            ("Task done on time", 10): 2,
+            ("Positive tone", 10): 2,
+            ("Task done on time", 11): 2,
+            ("Positive tone", 11): 2,
+            ("Task done on time", 12): 2,
+            ("Positive tone", 12): 2,
         })  # task done on time _all help others deep
         sim_dict = sim.to_dict('records')[0]
         del sim_dict[("Commitment", 12)]
@@ -3053,45 +3476,32 @@ def student_D(model):
         print("week 13")
         sim = model.simulate(n_samples=1, n_time_slices=14, evidence={
             # commitment_node_0: 1,
-            task_done_on_time_node_1: 1,
-            work_accepted_by_others_node_1: 1,
-            initiate_conversations_node_1: 1,
+            task_done_on_time_node_1: 2,
+            positive_tone_node_1: 2,
             ("Task done on time", 2): 2,
-            ("Work accepted by others", 2): 1,
-            ("Initiate_conversations", 2): 1,
-            ("Task done on time", 3): 1,
-            ("Work accepted by others", 3): 1,
-            ("Initiate_conversations", 3): 1,
+            ("Positive tone", 2): 2,
+            ("Task done on time", 3): 2,
+            ("Positive tone", 3): 2,
             ("Task done on time", 4): 2,
-            ("Work accepted by others", 4): 1,
-            ("Initiate_conversations", 4): 1,
-            ("Task done on time", 5): 1,
-            ("Work accepted by others", 5): 1,
-            ("Initiate_conversations", 5): 1,
+            ("Positive tone", 4): 2,
+            ("Task done on time", 5): 2,
+            ("Positive tone", 5): 2,
             ("Task done on time", 6): 2,
-            ("Work accepted by others", 6): 1,
-            ("Initiate_conversations", 6): 1,
-            ("Task done on time", 7): 1,
-            ("Work accepted by others", 7): 1,
-            ("Initiate_conversations", 7): 1,
+            ("Positive tone", 6): 2,
+            ("Task done on time", 7): 2,
+            ("Positive tone", 7): 2,
             ("Task done on time", 8): 2,
-            ("Work accepted by others", 8): 1,
-            ("Initiate_conversations", 8): 1,
-            ("Task done on time", 9): 1,
-            ("Work accepted by others", 9): 1,
-            ("Initiate_conversations", 9): 1,
+            ("Positive tone", 8): 2,
+            ("Task done on time", 9): 2,
+            ("Positive tone", 9): 2,
             ("Task done on time", 10): 2,
-            ("Work accepted by others", 10): 1,
-            ("Initiate_conversations", 10): 1,
-            ("Task done on time", 11): 1,
-            ("Work accepted by others", 11): 1,
-            ("Initiate_conversations", 11): 1,
+            ("Positive tone", 10): 2,
+            ("Task done on time", 11): 2,
+            ("Positive tone", 11): 2,
             ("Task done on time", 12): 2,
-            ("Work accepted by others", 12): 1,
-            ("Initiate_conversations", 12): 1,
+            ("Positive tone", 12): 2,
             ("Task done on time", 13): 2,
-            ("Work accepted by others", 13): 1,
-            ("Initiate_conversations", 13): 1,
+            ("Positive tone", 13): 2,
         })  # task done on time _all help others no observation
         sim_dict = sim.to_dict('records')[0]
         del sim_dict[("Commitment", 13)]
@@ -3104,95 +3514,9 @@ def student_D(model):
         student_1_result_mid.iloc[i, 13] = commitment_mid_prob
         student_1_result_low.iloc[i, 13] = commitment_low_prob
 
-        student_1_result_high.to_pickle("studentD_high.p")
-        student_1_result_mid.to_pickle("studentD_mid.p")
-        student_1_result_low.to_pickle("studentD_low.p")
-
-
-def graphing_all(level):
-
-    student_A_result = pd.read_pickle(f'studentA_{level}.p')
-    student_A_result_average = student_A_result.apply(np.mean, axis="rows")
-
-    student_B_result = pd.read_pickle(f'studentB_{level}.p')
-    student_B_result_average = student_B_result.apply(np.mean, axis="rows")
-
-    student_C_result = pd.read_pickle(f'studentC_{level}.p')
-    student_C_result_average = student_C_result.apply(np.mean, axis="rows")
-
-    student_D_result = pd.read_pickle(f'studentD_{level}.p')
-    student_D_result_average = student_D_result.apply(np.mean, axis="rows")
-
-    d = {"week": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-         "studentA": student_A_result_average,
-         "studentB": student_B_result_average,
-         "studentC": student_C_result_average,
-         "studentD": student_D_result_average,
-    }
-    # "student3": student_3_result}
-    df = pd.DataFrame(d)
-    ax = plt.gca()
-    df.plot(kind='line', x='week', y='studentA', ax=ax, x_compat=True)
-    df.plot(kind='line', x='week', y='studentB', ax=ax, x_compat=True)
-    df.plot(kind='line', x='week', y='studentC', ax=ax, x_compat=True)
-    df.plot(kind='line', x='week', y='studentD', ax=ax, x_compat=True)
-    plt.xticks(df['week'])
-    plt.ylabel(f'Probability of them being a {level} commitment student')
-    plt.ylim(0, 1)
-    plt.show()
-    plt.close()
-
-def graphing_As(level):
-
-    student_A_result = pd.read_pickle(f'studentA_{level}.p')
-    student_A_result_average = student_A_result.apply(np.mean, axis="rows")
-
-    student_A1_result = pd.read_pickle(f'studentA1_{level}.p')
-    student_A1_result_average = student_A1_result.apply(np.mean, axis="rows")
-
-    student_A2_result = pd.read_pickle(f'studentA2_{level}.p')
-    student_A2_result_average = student_A2_result.apply(np.mean, axis="rows")
-
-    d = {"week": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-         "studentA": student_A_result_average,
-         "studentA1": student_A1_result_average,
-         "studentA2": student_A2_result_average,
-    }
-    # "student3": student_3_result}
-    df = pd.DataFrame(d)
-    ax = plt.gca()
-    df.plot(kind='line', x='week', y='studentA', ax=ax, x_compat=True)
-    df.plot(kind='line', x='week', y='studentA1', ax=ax, x_compat=True)
-    df.plot(kind='line', x='week', y='studentA2', ax=ax, x_compat=True)
-    plt.xticks(df['week'])
-    plt.ylabel(f'Probability of them being a {level} commitment student')
-    plt.ylim(0, 1)
-    plt.show()
-    plt.close()
-
-
-def graphing_Bs(level):
-
-    student_B_result = pd.read_pickle(f'studentB_{level}.p')
-    student_B_result_average = student_B_result.apply(np.mean, axis="rows")
-
-    student_B1_result = pd.read_pickle(f'studentB1_{level}.p')
-    student_B1_result_average = student_B1_result.apply(np.mean, axis="rows")
-
-    d = {"week": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-         "studentB": student_B_result_average,
-         "studentB1": student_B1_result_average,
-    }
-    # "student3": student_3_result}
-    df = pd.DataFrame(d)
-    ax = plt.gca()
-    df.plot(kind='line', x='week', y='studentB', ax=ax, x_compat=True)
-    df.plot(kind='line', x='week', y='studentB1', ax=ax, x_compat=True)
-    plt.xticks(df['week'])
-    plt.ylabel(f'Probability of them being a {level} commitment student')
-    plt.ylim(0, 1)
-    plt.show()
-    plt.close()
+        student_1_result_high.to_pickle("studentF_strong_impression_high.p")
+        student_1_result_mid.to_pickle("studentF_strong_impression_mid.p")
+        student_1_result_low.to_pickle("studentF_strong_impression_low.p")
 
 
 if __name__ == '__main__':
@@ -3202,12 +3526,9 @@ if __name__ == '__main__':
     # student_A2(commitment_model)
     # student_B(commitment_model)
     # student_C(commitment_model)
-    student_B1(commitment_model)
-    student_D(commitment_model)
-    graphing_all("high")
-    graphing_all("mid")
-    graphing_all("low")
+    # student_B1(commitment_model)
+    # student_D(commitment_model)
+    # student_F(commitment_model)
 
-    graphing_Bs("high")
-    graphing_Bs("mid")
-    graphing_Bs("low")
+
+
