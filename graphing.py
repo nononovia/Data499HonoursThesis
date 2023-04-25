@@ -340,9 +340,9 @@ def graphing_test_result(level, node):
 #         student_result_average = student_result.apply(np.mean, axis="rows")
 
 if __name__ == '__main__':
-    graphing_test_result("high", "Commitment")
-    graphing_test_result("mid", "Commitment")
-    graphing_test_result("low", "Commitment")
+    # graphing_test_result("high", "Commitment")
+    # graphing_test_result("mid", "Commitment")
+    # graphing_test_result("low", "Commitment")
 
     # graphing_all("high")
     # graphing_all("mid")
@@ -364,6 +364,6 @@ if __name__ == '__main__':
     # graphing_Bs_strong_impression("mid")
     # graphing_Bs_strong_impression("low")
     #
-    # graphing_As_strong_impression("high")
-    # graphing_As_strong_impression("mid")
-    # graphing_As_strong_impression("low")
+    graphing_As_strong_impression("high")
+    graphing_As_strong_impression("mid")
+    graphing_As_strong_impression("low")

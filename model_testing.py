@@ -7,43 +7,49 @@ from Commitment_DBN import commitment
 
 def model_testing(model, iterations, node, level):
 
-    dbn_inf = DBNInference(model)
+    # dbn_inf = DBNInference(model)
+    #
+    # result_high = pd.DataFrame(columns=range(0, 14), index=range(0, iterations))
+    # result_mid = pd.DataFrame(columns=range(0, 14), index=range(0, iterations))
+    # result_low = pd.DataFrame(columns=range(0, 14), index=range(0, iterations))
 
-    result_high = pd.DataFrame(columns=range(0, 14), index=range(0, iterations))
-    result_mid = pd.DataFrame(columns=range(0, 14), index=range(0, iterations))
-    result_low = pd.DataFrame(columns=range(0, 14), index=range(0, iterations))
+    evidence_df = pd.DataFrame(columns=range(0, 14), index=range(0, iterations))
 
     for i in range(0, iterations):
         print("week 0")
         sim = model.simulate(1, evidence={(node, 0): level})
         sim_dict = sim.to_dict('records')[0]
-        del sim_dict[(node, 1)]
-        inference_value = dbn_inf.forward_inference([(node, 1)], sim_dict)
-        result = inference_value[(node, 1)].values
-        low_prob = result[0]
-        mid_prob = result[1]
-        high_prob = result[2]
-        result_high.iloc[i, 0] = high_prob
-        result_mid.iloc[i, 0] = mid_prob
-        result_low.iloc[i, 0] = low_prob
+        evidence_df.at[i, 0] = sim_dict
+        # del sim_dict[(node, 1)]
+        # inference_value = dbn_inf.forward_inference([(node, 1)], sim_dict)
+        # result = inference_value[(node, 1)].values
+        # low_prob = result[0]
+        # mid_prob = result[1]
+        # high_prob = result[2]
+        # result_high.iloc[i, 0] = high_prob
+        # result_mid.iloc[i, 0] = mid_prob
+        # result_low.iloc[i, 0] = low_prob
 
         for week in range(1, 14):
             print(f'week {week}')
             sim = model.simulate(n_samples=1, n_time_slices=week+1)
             sim_dict = sim.to_dict('records')[0]
-            del sim_dict[(node, week)]
-            inference_value = dbn_inf.forward_inference([(node, week)], sim_dict)
-            result = inference_value[(node, week)].values
-            low_prob = result[0]
-            mid_prob = result[1]
-            high_prob = result[2]
-            result_high.iloc[i, week] = high_prob
-            result_mid.iloc[i, week] = mid_prob
-            result_low.iloc[i, week] = low_prob
+            evidence_df.at[i, week] = sim_dict
+            # del sim_dict[(node, week)]
+            # inference_value = dbn_inf.forward_inference([(node, week)], sim_dict)
+            # result = inference_value[(node, week)].values
+            # low_prob = result[0]
+            # mid_prob = result[1]
+            # high_prob = result[2]
+            # result_high.iloc[i, week] = high_prob
+            # result_mid.iloc[i, week] = mid_prob
+            # result_low.iloc[i, week] = low_prob
 
-            result_high.to_pickle(f'{node}_{level}_testing_high.p')
-            result_mid.to_pickle(f'{node}_{level}_testing_mid.p')
-            result_low.to_pickle(f'{node}_{level}_testing_low.p')
+            # result_high.to_pickle(f'{node}_{level}_testing_high.p')
+            # result_mid.to_pickle(f'{node}_{level}_testing_mid.p')
+            # result_low.to_pickle(f'{node}_{level}_testing_low.p')
+
+            evidence_df.to_csv(f'{node}_{level}_evidence.csv')
 
 
 def model_testing2(model, iterations, node, level):
@@ -101,8 +107,13 @@ def model_testing3(model, iterations, node, level):
         result_low.to_pickle(f'{node}_{level}_testing_low.p')
 
 
+
+
 if __name__ == '__main__':
     commitment_model = commitment()
-    model_testing3(commitment_model, 500, "Commitment", 0)
-    model_testing3(commitment_model, 500, "Commitment", 1)
-    model_testing3(commitment_model, 500, "Commitment", 2)
+    # model_testing3(commitment_model, 500, "Commitment", 0)
+    # model_testing3(commitment_model, 500, "Commitment", 1)
+    # model_testing3(commitment_model, 500, "Commitment", 2)
+
+    model_testing(commitment_model, 10, 'Commitment', 0)
+    print("")
