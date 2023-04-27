@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import json
 
 
 def graphing_all(level):
@@ -333,13 +334,14 @@ def graphing_test_result(level, node):
     plt.show()
     plt.close()
 
-def histograms(evidence_df):
+
+def histograms(evidence_df, level):
     """
     {('Commitment', 0): 0, ('Mutual accountability', 0): 0, ('Trust', 0): 1, ('Completes the work', 0): 1, ('Enthusiastic', 0): 1, ('Go above and beyond', 0): 1, ('Takes charge', 0): 1, ('Commitment', 1): 0, ('Mutual accountability', 1): 0, ('Trust', 1): 2, ('Completes the work', 1): 0, ('Enthusiastic', 1): 0, ('Go above and beyond', 1): 1, ('Takes charge', 1): 1, ('Task done on time', 0): 1, ('Work accepted by others', 0): 1, ('Task done on time', 1): 1, ('Work accepted by others', 1): 2, ('Positive tone', 0): 1, ('Initiate conversations', 0): 1, ('Positive tone', 1): 2, ('Initiate conversations', 1): 1, ('Help others', 0): 2, ('Completes more tasks', 0): 1, ('Help others', 1): 2, ('Completes more tasks', 1): 1, ('Assigns tasks', 0): 1, ('Review work from others', 0): 2, ('Initiate meeting', 0): 1, ('Assigns tasks', 1): 1, ('Review work from others', 1): 2, ('Initiate meeting', 1): 1}
 
     """
 
-    evidence_list = ['Task done on time=all', 'Task done on time=partial', 'Task done on time=none',
+    evidence_name_list = ['Task done on time=all', 'Task done on time=partial', 'Task done on time=none',
                      'Work accepted by others=all', 'Work accepted by others=partial', 'Work accepted by others=none',
                      'Mostly Positive tone', 'Mostly Neutral tone', 'Mostly Negative tone',
                      'Initiate conversations=true', 'Initiate conversations=false',
@@ -349,6 +351,42 @@ def histograms(evidence_df):
                      'Review work from others=alot', 'Review work from others=some', 'Review work from others=none',
                      'Initiate meeting=true', 'Initiate meeting=false']
 
+    possible_observations_list = ['Task done on time_0', 'Task done on time_1', 'Task done on time_2',
+                     'Work accepted by others_0', 'Work accepted by others_1', 'Work accepted by others_2',
+                     'Positive tone_0', 'Positive tone_1', 'Positive tone_2',
+                     'Initiate conversations_0', 'Initiate conversations_1',
+                     'Help others_0', 'Help others_1', 'Help others_2',
+                     'Completes more tasks_0', 'Completes more tasks_1',
+                     'Assigns tasks_0',  'Assigns tasks_1',
+                     'Review work from others_0', 'Review work from others_1', 'Review work from others_2',
+                     'Initiate meeting_0', 'Initiate meeting_1']
+
+    observable_list = ['Task done on time', 'Work accepted by others', 'Positive tone', 'Initiate conversations',
+                       'Help others', 'Completes more tasks', 'Assigns tasks', 'Review work from others',
+                       'Initiate meeting']
+
+    result_df = pd.DataFrame(columns=possible_observations_list)
+    result_df.loc[len(result_df)] = 0
+    evidence_df = evidence_df.drop(columns=0)
+
+    for i in range(evidence_df.shape[0]):  # iterate over rows
+        for j in range(evidence_df.shape[1]):
+            time_slice = j+1
+            for observable in observable_list:
+                current_key = (observable, time_slice)
+                current_value = evidence_df.iloc[i, j][current_key]
+                current_observation = f'{observable}_{current_value}'
+                result_df.loc[0, current_observation] += 1
+
+    # plot bar chart
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ax.bar(evidence_name_list, result_df.iloc[0], color='blue')
+    # set font size and rotate x labels
+    plt.xticks(rotation=90, ha='right', fontsize=11)
+    # adjust bottom margin
+    plt.subplots_adjust(bottom=0.43)
+    plt.title(f'Distribution of generated observations for {level} level commitment students')
+    plt.show()
     # loop through all keys that contain "task done on time" then assign the levels accordingly
 
 # def graphing(level, *file_names):
@@ -357,9 +395,16 @@ def histograms(evidence_df):
 #         student_result_average = student_result.apply(np.mean, axis="rows")
 
 if __name__ == '__main__':
-    graphing_test_result("high", "Commitment")
-    graphing_test_result("mid", "Commitment")
-    graphing_test_result("low", "Commitment")
+    # graphing_test_result("high", "Commitment")
+    # graphing_test_result("mid", "Commitment")
+    # graphing_test_result("low", "Commitment")
+
+    evidence_df_low = pd.read_pickle("Commitment_0_observations_example.p")
+    evidence_df_mid = pd.read_pickle("Commitment_1_observations_example.p")
+    evidence_df_high = pd.read_pickle("Commitment_2_observations_example.p")
+    histograms(evidence_df_low, "low")
+    histograms(evidence_df_mid, "mid")
+    histograms(evidence_df_high, "high")
 
     # graphing_all("high")
     # graphing_all("mid")
