@@ -333,6 +333,23 @@ def graphing_test_result(level, node):
     plt.show()
     plt.close()
 
+def histograms(evidence_df):
+    """
+    {('Commitment', 0): 0, ('Mutual accountability', 0): 0, ('Trust', 0): 1, ('Completes the work', 0): 1, ('Enthusiastic', 0): 1, ('Go above and beyond', 0): 1, ('Takes charge', 0): 1, ('Commitment', 1): 0, ('Mutual accountability', 1): 0, ('Trust', 1): 2, ('Completes the work', 1): 0, ('Enthusiastic', 1): 0, ('Go above and beyond', 1): 1, ('Takes charge', 1): 1, ('Task done on time', 0): 1, ('Work accepted by others', 0): 1, ('Task done on time', 1): 1, ('Work accepted by others', 1): 2, ('Positive tone', 0): 1, ('Initiate conversations', 0): 1, ('Positive tone', 1): 2, ('Initiate conversations', 1): 1, ('Help others', 0): 2, ('Completes more tasks', 0): 1, ('Help others', 1): 2, ('Completes more tasks', 1): 1, ('Assigns tasks', 0): 1, ('Review work from others', 0): 2, ('Initiate meeting', 0): 1, ('Assigns tasks', 1): 1, ('Review work from others', 1): 2, ('Initiate meeting', 1): 1}
+
+    """
+
+    evidence_list = ['Task done on time=all', 'Task done on time=partial', 'Task done on time=none',
+                     'Work accepted by others=all', 'Work accepted by others=partial', 'Work accepted by others=none',
+                     'Mostly Positive tone', 'Mostly Neutral tone', 'Mostly Negative tone',
+                     'Initiate conversations=true', 'Initiate conversations=false',
+                     'Help others=deep', 'Help others=shallow', 'Help others=none',
+                     'Completes more tasks=true', 'Completes more tasks=false',
+                     'Assigns tasks=true',  'Assigns tasks=false',
+                     'Review work from others=alot', 'Review work from others=some', 'Review work from others=none',
+                     'Initiate meeting=true', 'Initiate meeting=false']
+
+    # loop through all keys that contain "task done on time" then assign the levels accordingly
 
 # def graphing(level, *file_names):
 #     for file in file_names:
@@ -340,9 +357,9 @@ def graphing_test_result(level, node):
 #         student_result_average = student_result.apply(np.mean, axis="rows")
 
 if __name__ == '__main__':
-    # graphing_test_result("high", "Commitment")
-    # graphing_test_result("mid", "Commitment")
-    # graphing_test_result("low", "Commitment")
+    graphing_test_result("high", "Commitment")
+    graphing_test_result("mid", "Commitment")
+    graphing_test_result("low", "Commitment")
 
     # graphing_all("high")
     # graphing_all("mid")
@@ -364,6 +381,6 @@ if __name__ == '__main__':
     # graphing_Bs_strong_impression("mid")
     # graphing_Bs_strong_impression("low")
     #
-    graphing_As_strong_impression("high")
-    graphing_As_strong_impression("mid")
-    graphing_As_strong_impression("low")
+    # graphing_As_strong_impression("high")
+    # graphing_As_strong_impression("mid")
+    # graphing_As_strong_impression("low")
