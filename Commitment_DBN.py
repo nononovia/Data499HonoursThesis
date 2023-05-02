@@ -36,7 +36,7 @@ initiate_conversations_node_1 = ('Initiate conversations', 1)
 help_others_node_1 = ('Help others', 1)
 completes_more_tasks_node_1 = ('Completes more tasks', 1)
 assigns_tasks_node_1 = ('Assigns tasks', 1)
-review_work_from_oters_node_1 = ('Review work from others', 1)
+review_work_from_others_node_1 = ('Review work from others', 1)
 initiate_meeting_node_1 = ('Initiate meeting', 1)
 
 MAX_ITERATIONS = 100
@@ -73,7 +73,7 @@ def commitment():
         (go_above_and_beyond_node_1, help_others_node_1),
         (go_above_and_beyond_node_1, completes_more_tasks_node_1),
         (takes_charge_node_1, assigns_tasks_node_1),
-        (takes_charge_node_1, review_work_from_oters_node_1),
+        (takes_charge_node_1, review_work_from_others_node_1),
         (takes_charge_node_1, initiate_meeting_node_1)
     ])
 
@@ -224,14 +224,7 @@ def student_A(model):
     week2_result = []
     for i in range(0, MAX_ITERATIONS):
         print("week 0")
-        # r = np.random.rand(1)
-        # cpd = model.get_cpds(commitment_node_0).values
-        # if r < cpd[0]:
-        #     sim = model.simulate(1, evidence={commitment_node_0: 0})
-        # elif r < cpd[1]:
-        #     sim = model.simulate(1, evidence={commitment_node_0: 1})
-        # else:
-        #     sim = model.simulate(1, evidence={commitment_node_0: 2})
+
         sim = model.simulate(1, evidence={commitment_node_0: 1})
         student_1_result_high.iloc[i, 0] = 0
         student_1_result_mid.iloc[i, 0] = 1
