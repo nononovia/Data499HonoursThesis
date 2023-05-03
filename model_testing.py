@@ -241,7 +241,7 @@ if __name__ == '__main__':
     # model_testing7(agreement_model, 5, "Agreed upon system", 1)
     # model_testing7(agreement_model, 5, "Agreed upon system", 2)
 
-    model_testing3(agreement_model, 500, "Agreed upon system", 0)
-    model_testing3(agreement_model, 500, "Agreed upon system", 1)
-    model_testing3(agreement_model, 500, "Agreed upon system", 2)
+    # model_testing3(agreement_model, 100, "Agreed upon system", 0)
+    # model_testing3(agreement_model, 100, "Agreed upon system", 1)
+    model_testing3(agreement_model, 100, "Agreed upon system", 2)
 

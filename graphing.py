@@ -461,6 +461,8 @@ def histograms_group(evidence_df, level):
                           "completion of task follows timeline=true", "completion of task follows timeline=false"
                           ]
 
+    evidence_name_list = list(range(0, 31))
+
     possible_observations_list = ["generally on track_0", "generally on track_1",
                                   "member following role_0", "member following role_1", "member following role_2",
                                   "task assigned based on role_0", "task assigned based on role_1",
@@ -508,18 +510,18 @@ def histograms_group(evidence_df, level):
     fig, ax = plt.subplots(figsize=(8, 6))
     ax.bar(evidence_name_list, result_df.iloc[0], color='blue')
     # set font size and rotate x labels
-    plt.xticks(rotation=50, ha='right', fontsize=11)
+    # plt.xticks(rotation=50, ha='right', fontsize=11)
     # adjust bottom margin
-    plt.subplots_adjust(bottom=0.55, left=0.3)
+    # plt.subplots_adjust(bottom=0.55, left=0.3)
     plt.title(f'Distribution of observations for groups with {level} level for agreed upon system')
     plt.show()
     # loop through all keys that contain "task done on time" then assign the levels accordingly
 
 
 if __name__ == '__main__':
-    graphing_test_result("high", "Commitment")
-    graphing_test_result("mid", "Commitment")
-    graphing_test_result("low", "Commitment")
+    # graphing_test_result("high", "Commitment")
+    # graphing_test_result("mid", "Commitment")
+    # graphing_test_result("low", "Commitment")
 
     # evidence_df_low = pd.read_pickle("Commitment_0_observations_example.p")
     # evidence_df_mid = pd.read_pickle("Commitment_1_observations_example.p")
@@ -536,7 +538,7 @@ if __name__ == '__main__':
     # graphing_Bs("mid")
     # graphing_Bs("low")
     #
-    graphing_As("high")
+    # graphing_As("high")
     # graphing_As("mid")
     # graphing_As("low")
     #
@@ -560,10 +562,10 @@ if __name__ == '__main__':
     # graphing_all_groups("mid")
     # graphing_all_groups("low")
 
-    # evidence_df_low = pd.read_pickle("Agreed upon system_0_observations_example.p")
-    # evidence_df_mid = pd.read_pickle("Agreed upon system_1_observations_example.p")
-    # evidence_df_high = pd.read_pickle("Agreed upon system_2_observations_example.p")
-    #
-    # histograms_group(evidence_df_high, "high")
-    # histograms_group(evidence_df_mid, "mid")
-    # histograms_group(evidence_df_low, "low")
+    evidence_df_low = pd.read_pickle("Agreed upon system_0_observations_example.p")
+    evidence_df_mid = pd.read_pickle("Agreed upon system_1_observations_example.p")
+    evidence_df_high = pd.read_pickle("Agreed upon system_2_observations_example.p")
+
+    histograms_group(evidence_df_high, "high")
+    histograms_group(evidence_df_mid, "mid")
+    histograms_group(evidence_df_low, "low")
