@@ -50,7 +50,7 @@ duration_of_task_in_progress_node_1 = ("duration of task in progress", 1)
 task_assigned_based_on_timeline_node_1 = ("task assigned based on timeline", 1)
 completion_time_follows_timeline_node_1 = ("completion time follows timeline", 1)
 
-MAX_ITERATIONS = 1
+MAX_ITERATIONS = 10
 
 
 def agreed_upon_system_process():
@@ -259,40 +259,6 @@ def agreed_upon_system_process():
 
     model.initialize_initial_state()
     return model
-
-
-def group_A_parallel(model):
-    # student_1_result_high = pd.DataFrame(index=range(0, MAX_ITERATIONS))
-    # student_1_result_mid = pd.DataFrame(index=range(0, MAX_ITERATIONS))
-    # student_1_result_low = pd.DataFrame(index=range(0, MAX_ITERATIONS))
-
-    list_of_tuple_A = []
-    list_of_tuple_B = []
-    list_of_tuple_C = []
-    # with Pool(MAX_ITERATIONS) as p:
-    #     list_of_tuple = p.map(group_A_inference, [model] * MAX_ITERATIONS)
-
-    # with Pool(MAX_ITERATIONS) as p:
-    #     list_of_tuple = p.map(group_C_inference, [copy.deepcopy(model), copy.deepcopy(model), copy.deepcopy(model), copy.deepcopy(model), copy.deepcopy(model)])
-
-    for i in range(0, MAX_ITERATIONS):
-        list_of_tuple_A.append(group_A_inference(model))
-        list_of_tuple_B.append(group_B_inference(model))
-        list_of_tuple_C.append(group_C_inference(model))
-    df_A = pd.DataFrame(list_of_tuple_A, columns=range(1, 14))
-    df_B = pd.DataFrame(list_of_tuple_B, columns=range(1, 14))
-    df_C = pd.DataFrame(list_of_tuple_C, columns=range(1, 14))
-
-    time_stamp = time.time()
-    df_A.to_csv(f'A_RESULT_{time_stamp}.csv')
-    df_B.to_csv(f'B_RESULT_{time_stamp}.csv')
-    df_C.to_csv(f'C_RESULT_{time_stamp}.csv')
-
-
-def test_inference(model) -> int:
-    model.seed = numpy.random.randint(1, 25)
-    print(model.seed)
-    return tuple([model.seed for _ in range(13)])
 
 
 def group_A_inference(model) -> tuple:
@@ -619,9 +585,20 @@ def group_A_inference(model) -> tuple:
     del sim_dict_13[("Agreed upon system", 13)]
     inference_value_13 = dbn_inf.forward_inference([("Agreed upon system", 13)], sim_dict_13)
     result_13 = inference_value_13[("Agreed upon system", 13)].values
-    return (
-    result_1, result_2, result_3, result_4, result_5, result_6, result_7, result_8, result_9, result_10, result_11,
-    result_12, result_13)
+
+    # list_of_tuple_A = [result_1, result_2, result_3, result_4, result_5, result_6, result_7, result_8, result_9, result_10, result_11,
+    # result_12, result_13]
+    # time_stamp = time.time()
+    # df_A = pd.DataFrame(list_of_tuple_A, columns=range(1, 14))
+    # df_A.to_csv(f'A_RESULT_{time_stamp}.csv')
+
+    df_A = pd.Series([result_1, result_2, result_3, result_4, result_5, result_6, result_7, result_8, result_9,
+                      result_10, result_11,
+                      result_12, result_13])
+    time_stamp = time.time()
+    # df_A = pd.DataFrame(list_of_tuple_A, columns=range(1, 14))
+    df_A.to_csv(f'A_RESULT_{time_stamp}.csv')
+
 
 
 def group_B_inference(model) -> tuple:
@@ -915,12 +892,22 @@ def group_B_inference(model) -> tuple:
     del sim_dict_13[("Agreed upon system", 13)]
     inference_value_13 = dbn_inf.forward_inference([("Agreed upon system", 13)], sim_dict_13)
     result_13 = inference_value_13[("Agreed upon system", 13)].values
-    return (
-    result_1, result_2, result_3, result_4, result_5, result_6, result_7, result_8, result_9, result_10, result_11,
-    result_12, result_13)
+    # list_of_tuple_A = [result_1, result_2, result_3, result_4, result_5, result_6, result_7, result_8, result_9,
+    #                    result_10, result_11,
+    #                    result_12, result_13]
+    # time_stamp = time.time()
+    # df_A = pd.DataFrame(list_of_tuple_A, columns=range(1, 14))
+    # df_A.to_csv(f'B_RESULT_{time_stamp}.csv')
+
+    df_A = pd.Series([result_1, result_2, result_3, result_4, result_5, result_6, result_7, result_8, result_9,
+                      result_10, result_11,
+                      result_12, result_13])
+    time_stamp = time.time()
+    # df_A = pd.DataFrame(list_of_tuple_A, columns=range(1, 14))
+    df_A.to_csv(f'B_RESULT_{time_stamp}.csv')
 
 
-def group_C_inference(model) -> tuple:
+def group_C_inference(model):
     model.seed = numpy.random.randint(1, 1000)
     dbn_inf = DBNInference(model)
     '''
@@ -940,7 +927,7 @@ def group_C_inference(model) -> tuple:
     del sim_dict_1[agreed_upon_system_node_1]
     inference_value_1 = dbn_inf.forward_inference([agreed_upon_system_node_1], sim_dict_1)
     result_1 = inference_value_1[agreed_upon_system_node_1].values
-
+    # result_1 = [0, 1, 2]
     print("week 2")
     sim_2 = model.simulate(n_samples=1, n_time_slices=3, evidence={
         ("reviewer reviews timely", 1): 1,
@@ -953,6 +940,7 @@ def group_C_inference(model) -> tuple:
     del sim_dict_2[("Agreed upon system", 2)]
     inference_value_2 = dbn_inf.forward_inference([("Agreed upon system", 2)], sim_dict_2)
     result_2 = inference_value_2[("Agreed upon system", 2)].values
+    # result_2 = [0, 1, 2]
 
     print("week 3")
     sim_3 = model.simulate(n_samples=1, n_time_slices=4, evidence={
@@ -967,6 +955,7 @@ def group_C_inference(model) -> tuple:
     del sim_dict_3[("Agreed upon system", 3)]
     inference_value_3 = dbn_inf.forward_inference([("Agreed upon system", 3)], sim_dict_3)
     result_3 = inference_value_3[("Agreed upon system", 3)].values
+    # result_3 = [0, 1, 2]
 
     print("week 4")
     sim_4 = model.simulate(n_samples=1, n_time_slices=5, evidence={
@@ -985,6 +974,7 @@ def group_C_inference(model) -> tuple:
     del sim_dict_4[("Agreed upon system", 4)]
     inference_value_4 = dbn_inf.forward_inference([("Agreed upon system", 4)], sim_dict_4)
     result_4 = inference_value_4[("Agreed upon system", 4)].values
+    # result_4 = [0, 1, 2]
 
     print("week 5")
     sim_5 = model.simulate(n_samples=1, n_time_slices=6, evidence={
@@ -1004,6 +994,7 @@ def group_C_inference(model) -> tuple:
     del sim_dict_5[("Agreed upon system", 5)]
     inference_value_5 = dbn_inf.forward_inference([("Agreed upon system", 5)], sim_dict_5)
     result_5 = inference_value_5[("Agreed upon system", 5)].values
+    # result_5 = [0, 1, 2]
 
     print("week 6")
     sim_6 = model.simulate(n_samples=1, n_time_slices=7, evidence={
@@ -1026,6 +1017,7 @@ def group_C_inference(model) -> tuple:
     del sim_dict_6[("Agreed upon system", 6)]
     inference_value_6 = dbn_inf.forward_inference([("Agreed upon system", 6)], sim_dict_6)
     result_6 = inference_value_6[("Agreed upon system", 6)].values
+    # result_6 = [0, 1, 2]
 
     print("week 7")
     sim_7 = model.simulate(n_samples=1, n_time_slices=8, evidence={
@@ -1050,6 +1042,7 @@ def group_C_inference(model) -> tuple:
     del sim_dict_7[("Agreed upon system", 7)]
     inference_value_7 = dbn_inf.forward_inference([("Agreed upon system", 7)], sim_dict_7)
     result_7 = inference_value_7[("Agreed upon system", 7)].values
+    # result_7 = [0, 1, 2]
 
     print("week 8")
     sim_8 = model.simulate(n_samples=1, n_time_slices=9, evidence={
@@ -1077,6 +1070,7 @@ def group_C_inference(model) -> tuple:
     del sim_dict_8[("Agreed upon system", 8)]
     inference_value_8 = dbn_inf.forward_inference([("Agreed upon system", 8)], sim_dict_8)
     result_8 = inference_value_8[("Agreed upon system", 8)].values
+    # result_8 = [0, 1, 2]
 
     print("week 9")
     sim_9 = model.simulate(n_samples=1, n_time_slices=10, evidence={
@@ -1105,6 +1099,7 @@ def group_C_inference(model) -> tuple:
     del sim_dict_9[("Agreed upon system", 9)]
     inference_value_9 = dbn_inf.forward_inference([("Agreed upon system", 9)], sim_dict_9)
     result_9 = inference_value_9[("Agreed upon system", 9)].values
+    # result_9 = [0, 1, 2]
 
     print("week 10")
     sim_10 = model.simulate(n_samples=1, n_time_slices=11, evidence={
@@ -1137,6 +1132,7 @@ def group_C_inference(model) -> tuple:
     del sim_dict_10[("Agreed upon system", 10)]
     inference_value_10 = dbn_inf.forward_inference([("Agreed upon system", 10)], sim_dict_10)
     result_10 = inference_value_10[("Agreed upon system", 10)].values
+    # result_10 = [0, 1, 2]
 
     print("week 11")
     sim_11 = model.simulate(n_samples=1, n_time_slices=12, evidence={
@@ -1170,6 +1166,7 @@ def group_C_inference(model) -> tuple:
     del sim_dict_11[("Agreed upon system", 11)]
     inference_value_11 = dbn_inf.forward_inference([("Agreed upon system", 11)], sim_dict_11)
     result_11 = inference_value_11[("Agreed upon system", 11)].values
+    # result_11 = [0, 1, 2]
 
     print("week 12")
     sim_12 = model.simulate(n_samples=1, n_time_slices=13, evidence={
@@ -1206,6 +1203,7 @@ def group_C_inference(model) -> tuple:
     del sim_dict_12[("Agreed upon system", 12)]
     inference_value_12 = dbn_inf.forward_inference([("Agreed upon system", 12)], sim_dict_12)
     result_12 = inference_value_12[("Agreed upon system", 12)].values
+    # result_12 = [0, 1, 2]
 
     print("week 13")
     sim_13 = model.simulate(n_samples=1, n_time_slices=14, evidence={
@@ -1243,12 +1241,23 @@ def group_C_inference(model) -> tuple:
     del sim_dict_13[("Agreed upon system", 13)]
     inference_value_13 = dbn_inf.forward_inference([("Agreed upon system", 13)], sim_dict_13)
     result_13 = inference_value_13[("Agreed upon system", 13)].values
-    return (
-    result_1, result_2, result_3, result_4, result_5, result_6, result_7, result_8, result_9, result_10, result_11,
-    result_12, result_13)
+    # result_13 = [0, 1, 2]
 
+    df_A = pd.Series([result_1, result_2, result_3, result_4, result_5, result_6, result_7, result_8, result_9,
+                       result_10, result_11,
+                       result_12, result_13])
+    time_stamp = time.time()
+    # df_A = pd.DataFrame(list_of_tuple_A, columns=range(1, 14))
+    df_A.to_csv(f'C_RESULT_{time_stamp}.csv')
+
+
+def run_model(model):
+    for i in range(0, MAX_ITERATIONS):
+        group_A_inference(model)
+        # group_B_inference(model)
+        # group_C_inference(model)
 
 
 if __name__ == '__main__':
     model = agreed_upon_system_process()
-    group_A_parallel(model)
+    run_model(model)

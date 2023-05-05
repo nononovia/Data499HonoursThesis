@@ -527,7 +527,7 @@ if __name__ == '__main__':
     # evidence_df_mid = pd.read_pickle("Commitment_1_observations_example.p")
     # evidence_df_high = pd.read_pickle("Commitment_2_observations_example.p")
     # histograms(evidence_df_low, "low")
-    # histograms(evidence_df_mid, "mid")
+    histograms(evidence_df_mid, "mid")
     # histograms(evidence_df_high, "high")
 
     # graphing_all("high")
